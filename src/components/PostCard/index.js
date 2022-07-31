@@ -21,6 +21,7 @@ const Card = ({
   authorName = "",
   authorEmail = "",
   onPress = () => {},
+  showCommentLink = true,
 }) => {
   return (
     <Wrapper>
@@ -39,9 +40,10 @@ const Card = ({
           <AuthorName>{authorEmail}</AuthorName>
         </AuthorInfoSection>
       </AuthorSection>
+      {showCommentLink &&
       <CommentsIconWrapper onPress={onPress}>
         <CommentsIcon color={colors.black} width={24} height={24} />
-      </CommentsIconWrapper>
+      </CommentsIconWrapper>}
     </Wrapper>
   );
 };

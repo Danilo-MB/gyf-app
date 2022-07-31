@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { MainWrapper, InputSection, CardsSection } from './styled';
-import SearchInput from '../../components/SearchInput';
-import SearchIcon from '../../components/icons/Search';
+import { MainWrapper } from './styled';
 import { getPostData } from '../../services/api/posts';
-import { colors } from '../../styles';
-import Card from '../../components/Card';
+import PostCard from '../../components/PostCard';
 import useFetchData from '../../utils/useFetchData';
 
 const MainScreen = ({ navigation }) => {
@@ -19,7 +16,7 @@ const MainScreen = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <Card
+    <PostCard
       title={item.title}
       body={item.body}
       authorName={userData(item.userId).userName}
@@ -30,12 +27,6 @@ const MainScreen = ({ navigation }) => {
 
   return (
     <MainWrapper>
-      <InputSection>
-        <SearchInput
-          placeholder='Buscar un pokemon' 
-          rightIcon={<SearchIcon color={colors.gray} width={20} height={20} />}
-        />
-      </InputSection>
       <FlatList
         data={useFetchData().postList}
         renderItem={renderItem}
